@@ -1,0 +1,11 @@
+{
+  "nas_path": "\\\\OPENMEDIAVAULT",
+  "shared_folder": "test",
+  "camera_default_folder": "xiaomi_camera_videos",
+  "username": "test",
+  "password": "test",
+  "cache_enabled": true,
+  "cache_max_age_hours": 24,
+  "auto_refresh_interval_minutes": 30,
+  "theme": "dark"
+}
