@@ -1,231 +1,326 @@
-# NAS Camera Viewer
-
-A Python desktop application for viewing security camera recordings stored on Network Attached Storage (NAS) devices.
-
-## Features
-
-- **Dashboard View**: Browse all available cameras with visual cards showing recording status
-- **24-Hour Timeline**: Interactive timeline showing video availability throughout the day
-- **Seamless Playback**: Continuous playback of 1-minute video segments as a single stream
-- **Calendar Navigation**: Easy date selection with visual indicators for recording availability
-- **Settings Management**: Configure NAS connection and application preferences
-- **Caching System**: Fast startup with local caching of NAS scan results
-- **Multi-Camera Support**: Quick switching between different cameras
-
-## Requirements
-
-### System Requirements
-
-- Windows 10/11 (64-bit)
-- Network access to NAS device
-
-### Python Requirements (for development)
-
-- Python 3.10 or newer
-- PyQt6
-- PyInstaller (for building executable)
-
-## Installation
-
-### Option 1: Download Pre-built Executable
-
-1. Download `NASCameraViewer.exe` from releases
-2. Run the executable directly - no installation required
-
-### Option 2: Build from Source
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone <repository-url>
-   cd nas-camera-viewer
-   ```
-
-2. **Install Python dependencies**:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the application**:
-
-   ```bash
-   python app.py
-   ```
-
-4. **Build executable (optional)**:
-
-   ```bash
-   # Windows
-   build.bat
-
-   # Linux/macOS
-   chmod +x build.sh
-   ./build.sh
-   ```
-
-## Configuration
-
-### First Time Setup
-
-1. Launch the application
-2. Go to **File > Settings** (or press Ctrl+S)
-3. Configure your NAS connection:
-   - **NAS Path**: Your NAS server path (e.g., `\\\\OPENMEDIAVAULT` or `\\\\192.168.1.100`)
-   - **Shared Folder**: The shared folder name (e.g., `test`)
-   - **Camera Folder**: Default camera folder name (e.g., `xiaomi_camera_videos`)
-   - **Username/Password**: Optional NAS credentials
-
-### Expected Folder Structure
-
-The application expects the following folder structure on your NAS:
+# 📹 NAS Camera Viewer 🏠
 
 ```
-NAS_PATH/
-├── SHARED_FOLDER/
-│   └── CAMERA_DEFAULT_FOLDER/
-│       ├── CAMERA_ID_1/
-│       │   ├── 2024010100/     # YYYYMMDDHH format
-│       │   │   ├── 00M00S_timestamp.mp4
-│       │   │   ├── 01M00S_timestamp.mp4
-│       │   │   └── ...
-│       │   ├── 2024010101/
-│       │   └── ...
-│       ├── CAMERA_ID_2/
-│       └── ...
+ ███╗   ██╗ █████╗ ███████╗     ██████╗ █████╗ ███╗   ███╗
+ ████╗  ██║██╔══██╗██╔════╝    ██╔════╝██╔══██╗████╗ ████║
+ ██╔██╗ ██║███████║███████╗    ██║     ███████║██╔████╔██║
+ ██║╚██╗██║██╔══██║╚════██║    ██║     ██╔══██║██║╚██╔╝██║
+ ██║ ╚████║██║  ██║███████║    ╚██████╗██║  ██║██║ ╚═╝ ██║
+ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝
 ```
 
-Example:
+> 🔍 **Your Security, Simplified** - A sleek Python desktop application that transforms your NAS into a powerful security camera management hub!
+
+---
+
+## ✨ What Makes This Special?
+
+🎯 **Smart Dashboard**: Beautiful camera cards that show you everything at a glance  
+⏰ **Time Travel**: 24-hour interactive timeline - click anywhere to jump through time!  
+🎬 **Seamless Cinema**: Watch hours of recordings as one continuous movie  
+📅 **Visual Calendar**: Color-coded dates show recording availability instantly  
+⚙️ **Easy Setup**: One-time configuration, lifetime convenience  
+🚀 **Lightning Fast**: Smart caching keeps everything snappy  
+🔄 **Multi-Camera Magic**: Switch between cameras with a single click
+
+## 🛠️ What You'll Need
+
+### 💻 System Requirements
 
 ```
-\\OPENMEDIAVAULT/
-├── test/
-│   └── xiaomi_camera_videos/
-│       ├── 6005F4CA7D44/
-│       │   ├── 2024081207/
-│       │   │   ├── 06M02S_1756191962.mp4
-│       │   │   ├── 07M01S_1756192021.mp4
-│       │   │   └── ...
-│       │   └── 2024081212/
-│       └── 6005F4CA7D45/
+✅ Windows 10/11 (64-bit) - Because we love stability!
+🌐 Network connection to your NAS - The magic highway
+📁 Some camera recordings - The star of the show!
 ```
 
-## Usage
+### 🐍 For the Code Wizards (Development)
 
-### Dashboard
-
-- Launch the application to see the camera dashboard
-- Each camera appears as a card showing:
-  - Camera name/ID
-  - Number of recording days
-  - Latest recording date
-  - Status indicator (Active/No Data)
-- Click any camera card to open the player
-
-### Camera Player
-
-- **Video Player**: Large video display with standard controls
-- **Calendar**: Left sidebar showing available recording dates
-  - Green highlight: Complete recordings
-  - Yellow highlight: Partial recordings
-  - Gray: No recordings
-- **Timeline**: 24-hour interactive timeline below the video
-  - Green segments: Available video
-  - Gray areas: No recording
-  - Red line: Current playback position
-  - Click anywhere to seek
-- **Quick Navigation**:
-  - Hour buttons (0, 2, 4, 6, ..., 22) for quick jumping
-  - Time input field for precise seeking
-- **Camera Switcher**: Buttons to switch between cameras
-
-### Settings
-
-- **NAS Configuration**: Set up connection to your NAS device
-- **Cache Settings**: Configure local caching behavior
-- **Auto-refresh**: Set automatic scanning interval
-- **Connection Test**: Verify NAS accessibility
-
-## Troubleshooting
-
-### Common Issues
-
-1. **"NAS path not accessible"**
-
-   - Verify NAS is powered on and connected to network
-   - Check network path format (use `\\\\` for Windows UNC paths)
-   - Test connection using Windows File Explorer
-   - Verify credentials if authentication is required
-
-2. **"No cameras found"**
-
-   - Check folder structure matches expected format
-   - Verify shared folder and camera folder names in settings
-   - Use the connection test in settings to diagnose
-
-3. **Video playback issues**
-
-   - Ensure video files are in a format supported by your system's codecs (MP4, AVI, etc.)
-   - Check that video files are not corrupted
-   - Verify sufficient network bandwidth for streaming
-
-4. **Slow performance**
-   - Enable caching in settings
-   - Reduce auto-refresh interval
-   - Check network connection speed to NAS
-
-### Log Files
-
-The application logs errors to the console. To see detailed error information:
-
-1. Run the executable from Command Prompt/Terminal
-2. Check the console output for error messages
-
-## Development
-
-### Project Structure
-
-```
-nas-camera-viewer/
-├── app.py                    # Main application entry point
-├── main_window.py           # Main application window
-├── models.py                # Data models (Camera, RecordingDay, etc.)
-├── services.py              # Core services (Config, NAS Scanner, Cache)
-├── dashboard_view.py        # Camera dashboard view
-├── camera_player_view.py    # Camera player view
-├── video_player.py          # VLC video player widget
-├── calendar_widget.py       # Custom calendar widget
-├── timeline_widget.py       # Custom 24-hour timeline widget
-├── settings_view.py         # Settings configuration view
-├── requirements.txt         # Python dependencies
-├── build.spec              # PyInstaller specification
-├── build.bat              # Windows build script
-├── build.sh               # Linux/macOS build script
-└── README.md              # This file
+```python
+# The essentials
+🐍 Python 3.10+
+🎨 PyQt6      # For that gorgeous UI
+📦 PyInstaller # Turn Python into .exe magic
 ```
 
-### Architecture
+## 🚀 Get Started in Seconds!
 
-The application follows an MVVM (Model-View-ViewModel) architecture:
+### 🎁 Option 1: The Easy Way (Recommended)
 
-- **Model**: Data models and services (`models.py`, `services.py`)
-- **View**: UI components (`*_view.py`, `*_widget.py`)
-- **ViewModel**: Application logic connecting models and views (`main_window.py`)
+```
+1️⃣ Download NASCameraViewer.exe from releases
+2️⃣ Double-click and enjoy!
+   ↪️ No installation drama, no dependency hell!
+```
 
-### Contributing
+### 🔧 Option 2: For the Adventurous (From Source)
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+**🌱 Clone & Conquer:**
 
-## License
+```bash
+git clone <repository-url>
+cd nas-camera-viewer
+# Welcome to the source side! 🌟
+```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+**📦 Gather the Magic Ingredients:**
 
-## Acknowledgments
+```bash
+pip install -r requirements.txt
+# Installing the secret sauce... ✨
+```
 
-- Built with PyQt6 for the user interface
-- Uses the Qt Multimedia framework for video playback
-- Packaged with PyInstaller for standalone distribution
+**🏃‍♂️ Take It for a Spin:**
+
+```bash
+python app.py
+# And... ACTION! 🎬
+```
+
+**🏗️ Build Your Own Executable (Because Why Not?):**
+
+```bash
+# Windows Warriors:
+build.bat
+
+# Unix/Linux Legends:
+chmod +x build.sh && ./build.sh
+```
+
+> 💡 **Pro Tip**: The build scripts create a standalone .exe that you can share with friends!
+
+## 🎛️ Setup Your Command Center
+
+### 🚀 First Launch Magic
+
+```
+🌟 Launch the app (exciting moment!)
+⚙️ Hit File > Settings (or Ctrl+S for speed demons)
+🔗 Connect to your NAS and watch the magic happen!
+```
+
+### 🗺️ The Connection Map
+
+Fill in these treasure map coordinates:
+
+| 🏷️ Setting           | 📝 What to Enter            | 💡 Example                                  |
+| -------------------- | --------------------------- | ------------------------------------------- |
+| 🌐 **NAS Path**      | Your network highway        | `\\\\OPENMEDIAVAULT` or `\\\\192.168.1.100` |
+| 📁 **Shared Folder** | The main vault              | `test` or `security_videos`                 |
+| 📹 **Camera Folder** | Where the action lives      | `xiaomi_camera_videos`                      |
+| 🔐 **Credentials**   | Secret handshake (optional) | username & password                         |
+
+### 📂 The Perfect Folder Recipe
+
+Your NAS should be organized like this delicious layer cake:
+
+```
+🏠 NAS_ROOT/
+├── 📁 SHARED_FOLDER/
+│   └── 📹 CAMERA_FOLDER/
+│       ├── 📷 CAMERA_ID_1/
+│       │   ├── 📅 2024010100/    ← Hour folders (YYYYMMDDHH)
+│       │   │   ├── 🎬 00M00S_timestamp.mp4
+│       │   │   ├── 🎬 01M00S_timestamp.mp4
+│       │   │   └── 🎬 ... more movie magic
+│       │   └── 📅 2024010101/
+│       └── 📷 CAMERA_ID_2/
+```
+
+**🎯 Real-World Example:**
+
+```
+🏠 \\OPENMEDIAVAULT/
+├── 📁 test/
+│   └── 📹 xiaomi_camera_videos/
+│       ├── 📷 6005F4CA7D44/           ← Camera 1
+│       │   ├── 📅 2024081207/         ← August 12, 7 AM
+│       │   │   ├── 🎬 06M02S_1756191962.mp4
+│       │   │   ├── 🎬 07M01S_1756192021.mp4
+│       │   │   └── 🎬 ... security gold!
+│       │   └── 📅 2024081212/         ← August 12, 12 PM
+│       └── 📷 6005F4CA7D45/           ← Camera 2
+```
+
+## 🎮 Master the Interface
+
+### 🏡 The Dashboard - Your Security HQ
+
+```
+🚀 Launch → Instant camera overview
+📊 Beautiful cards showing:
+   📷 Camera name/ID (your digital sentries)
+   📅 Recording days count (how much history you've got)
+   ⏰ Latest activity (what's fresh)
+   🟢 Status lights (green = active, gray = sleeping)
+👆 Click any card → Dive into the action!
+```
+
+### 🎬 The Player - Where Magic Happens
+
+**🖥️ Video Theater:**
+
+```
+🎭 Large, beautiful video display
+⏯️ All the controls you love (play, pause, seek)
+🎪 Continuous playback across video segments
+```
+
+**📅 Time Machine Calendar:**
+
+```
+🟢 Green days = Full recordings (jackpot!)
+🟡 Yellow days = Partial recordings (some action)
+⚪ Gray days = Quiet days (nothing to see)
+👆 Click any date to time travel!
+```
+
+**⏰ The 24-Hour Timeline:**
+
+```
+🟢 Green bars = Video available (the good stuff)
+⚪ Gray gaps = No recording (quiet moments)
+🔴 Red line = You are here (current position)
+👆 Click anywhere = Instant time jump!
+```
+
+**🎯 Quick Navigation Superpowers:**
+
+```
+🕒 Hour buttons (0, 2, 4, 6...) → Jump to any hour
+⌨️ Time input → Precision seeking (HH:MM:SS)
+🔄 Camera buttons → Switch between your digital eyes
+```
+
+### ⚙️ Settings Command Center
+
+```
+🌐 NAS Setup → Connect to your digital vault
+💾 Cache Control → Speed vs. storage balance
+🔄 Auto-refresh → How often to check for new footage
+🧪 Connection Test → Make sure everything's working
+```
+
+## 🚨 When Things Go Sideways
+
+### 🔧 Common Fixes for Common Problems
+
+#### 🚫 "NAS path not accessible"
+
+```
+🔍 Detective Work:
+   ✅ Is your NAS actually on? (Power button = important!)
+   🌐 Network connection solid? (Try pinging it)
+   📝 Path format correct? (Windows loves \\\\SERVER)
+   🔐 Need a password? (Some NASeS are shy)
+
+🧪 Quick Test: Open Windows File Explorer → Navigate to your NAS
+```
+
+#### 👻 "No cameras found"
+
+```
+📂 Structure Check:
+   ✅ Folder layout matches our recipe above?
+   📝 Spelling matters! (case-sensitive sometimes)
+   🔧 Try the connection test in settings
+
+💡 Pro Tip: Start with one camera folder to test
+```
+
+#### 🎬 Video Playback Acting Up
+
+```
+🎭 Format Drama:
+   ✅ MP4, AVI files work best
+   💿 Corrupted files = no bueno
+   🌐 Network too slow? (Try local files first)
+
+🔧 Quick Fix: Try a different video file
+```
+
+#### 🐌 Performance Feeling Sluggish
+
+```
+⚡ Speed Boost Recipe:
+   💾 Enable caching (it's like coffee for apps)
+   🔄 Reduce auto-refresh frequency
+   🌐 Check your network speed
+   💻 More RAM = happier app
+```
+
+### 📋 Detective Mode (Logs)
+
+When things get mysterious:
+
+```bash
+# Windows Command Prompt:
+NASCameraViewer.exe
+
+# Look for clues in the console output! 🕵️‍♂️
+```
+
+## 🛠️ For the Code Enthusiasts
+
+### 🏗️ The Blueprint
+
+```
+🏠 nas-camera-viewer/
+├── 🚀 app.py                    # The launchpad
+├── 🏛️ main_window.py           # The command center
+├── 📊 models.py                # Data blueprints
+├── ⚙️ services.py              # The engine room
+├── 🏡 dashboard_view.py        # Camera gallery
+├── 🎬 camera_player_view.py    # The main theater
+├── 📺 video_player.py          # VLC magic wrapper
+├── 📅 calendar_widget.py       # Time travel device
+├── ⏰ timeline_widget.py       # 24-hour ruler
+├── ⚙️ settings_view.py         # Control panel
+├── 📦 requirements.txt         # Shopping list
+├── 🔧 build.spec              # Build recipe
+├── 🪟 build.bat              # Windows builder
+├── 🐧 build.sh               # Unix builder
+└── 📖 README.md              # This masterpiece!
+```
+
+### 🏛️ Architecture Wisdom
+
+```
+📐 MVVM Pattern (Because we're classy):
+   📊 Model → Data models & services (the brains)
+   🎨 View → UI components (the beauty)
+   🔗 ViewModel → The matchmaker (main_window.py)
+```
+
+### 🤝 Join the Fun!
+
+```
+1️⃣ Fork it (make it yours!)
+2️⃣ Branch it (feature/awesome-thing)
+3️⃣ Code it (make magic happen)
+4️⃣ Test it (break things responsibly)
+5️⃣ PR it (share the love!)
+```
+
+---
+
+## 📜 The Fine Print
+
+**📄 License:** MIT License - because sharing is caring!
+
+## 🙏 Standing on Giants' Shoulders
+
+- 🎨 **PyQt6** - Making desktop apps beautiful since forever
+- 🎬 **Qt Multimedia** - Video playback wizardry
+- 📦 **PyInstaller** - Python → .exe alchemy
+- ❤️ **You** - For being awesome and using this app!
+
+---
+
+<div align="center">
+
+**🎯 Made with ❤️ for security camera enthusiasts everywhere! 🎯**
+
+_Got questions? Found a bug? Want to add a feature?_  
+_Don't be shy - open an issue! 🐛_
+
+</div>

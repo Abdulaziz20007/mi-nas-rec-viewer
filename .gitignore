@@ -1,0 +1,48 @@
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.wheel
+
+# PyInstaller specific
+*.manifest
+*.spec
+
+# Application specific cache files
+cache_metadata.json
+nas_cache.pkl
+settings.json
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs and debugging
+*.log
+*.out
+*.err
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+
+# Documentation builds
+docs/_build/
